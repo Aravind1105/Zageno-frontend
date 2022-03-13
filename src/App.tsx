@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
-function App() {
+import { Paths } from "./constants";
+import "./App.css";
+import AllLists from "./components/AllLists";
+import SelectedList from "./components/SelectedList";
+import { ShoppingListContext } from "./list-context";
+import { ShoppingList } from "./interfaces";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path={Paths.ALL_LISTS} element={<AllLists />} />
+        <Route path={`${Paths.LIST_BY_ID}/:listId`} element={<SelectedList />} />
+        <Route path="*" element={<Navigate to={Paths.ALL_LISTS} />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
