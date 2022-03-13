@@ -48,6 +48,9 @@ export const DeleteButton = styled.button`
   display: flex;
   align-items: center;
   margin: auto;
+  &:hover {
+    color: red;
+  }
 `;
 
 export const Table = styled.table`
